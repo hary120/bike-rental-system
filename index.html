@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+ <html>
+ <body style="display:flex; justify-content:center; align-items:center; height:100vh; font-family:Arial; 
+  background-image:url('https://images.unsplash.com/photo-1518655048521-f130df041f66');  
+  background-size:cover;
+  background-position:center;">
+
+  <div style="text-align:center; border:1px solid rgb(137, 201, 169); padding:20px; border-radius:10px; background-color:rgba(255,255,255,0.8);">
+
+  <h1>Cubin bookers</h1>
+
+<input type="text" id="name" placeholder="Enter Name"><br><br>
+
+<select id="bike">
+    <option value="100">Normal Bike</option>
+    <option value="200">Sports Bike</option>
+</select><br><br>
+<input type="number" id="hours" placeholder="Hours"><br><br>
+<button onclick="bookBike()">Book</button>
+<h3 id="msg"></h3>
+</div>
+<script>
+function bookBike() {
+
+    let name = document.getElementById("name").value;
+    let price = document.getElementById("bike").value;
+    let hours = document.getElementById("hours").value;
+
+    if(name === "" || hours === "") {
+        alert("Please fill all fields");
+        return;
+    }
+
+    fetch("http://localhost:8080/book?name=" + name +
+          "&price=" + price +
+          "&hours=" + hours)
+
+    .then(res => res.text())
+    .then(data => {
+        document.getElementById("msg").innerHTML = data;
+    });
+}
+</script>
+</body>
+</html>

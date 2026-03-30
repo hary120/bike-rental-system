@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<body style="
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+font-family:Arial;
+background-image:url('https://images.unsplash.com/photo-1518655048521-f130df041f66');
+background-size:cover;
+background-position:center;">
+
+<div style="
+background:rgba(255,255,255,0.9);
+padding:25px;
+border-radius:10px;
+text-align:center;
+width:250px;">
+
+<h1>Cubin Login</h1>
+
+<input type="text" id="user" placeholder="Username"><br><br>
+<input type="password" id="pass" placeholder="Password"><br><br>
+
+<button onclick="login()">Login</button><br><br>
+<button onclick="register()">Register</button>
+
+</div>
+
+<script>
+function login() {
+    let u = document.getElementById("user").value;
+    let p = document.getElementById("pass").value;
+
+    let savedUser = localStorage.getItem("username");
+    let savedPass = localStorage.getItem("password");
+
+    if(u === savedUser && p === savedPass) {
+        window.location.href = "index.html";
+    } else {
+        alert("User not found! Please register");
+    }
+}
+
+
+function register() {
+    let u = document.getElementById("user").value;
+    let p = document.getElementById("pass").value;
+
+    if(u === "" || p === "") {
+        alert("Enter username & password");
+        return;
+    }
+
+    localStorage.setItem("username", u);
+    localStorage.setItem("password", p);
+
+    alert("Registered Successfully!");
+}
+
+</script>
+
+</body>
+</html>
